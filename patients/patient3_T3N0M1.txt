@@ -1,0 +1,9 @@
+Patient ID: P003
+Age: 72
+Sex: Male
+
+Clinical summary:
+A 6.2 cm right lower lobe mass invading the chest wall. No enlarged mediastinal nodes identified. Multiple hepatic lesions consistent with metastases.
+
+Impression:
+Large primary tumor (>5 cm) with chest wall invasion, no nodal disease, and distant liver metastases.

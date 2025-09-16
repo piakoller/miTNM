@@ -1,0 +1,9 @@
+Patient ID: P001
+Age: 67
+Sex: Male
+
+Clinical summary:
+CT shows a 3.1 cm mass in the right upper lobe. No enlarged or FDG-avid mediastinal/hilar lymph nodes. No distant metastases on PET/CT. Biopsy confirms adenocarcinoma.
+
+Impression:
+Primary lung mass ~3.1 cm. No nodal involvement. No distant metastasis detected.

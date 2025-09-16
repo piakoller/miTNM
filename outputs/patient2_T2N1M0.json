@@ -1,0 +1,9 @@
+{
+  "miTNM_signature": {
+    "miT": "miT3",
+    "miN": "miN1",
+    "miM": "miM0"
+  },
+  "confidence": 0.8,
+  "rationale": "The report indicates a primary tumor of 3.5 cm and ipsilateral hilar lymph node involvement (1.2 cm), suggesting miT3 and miN1. There is no mention of distant metastasis, therefore miM0 is appropriate."
+}

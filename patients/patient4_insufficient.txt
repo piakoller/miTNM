@@ -1,0 +1,9 @@
+Patient ID: P004
+Age: 64
+Sex: Female
+
+Clinical summary:
+Non-specific cough and weight loss. Chest imaging pending. No pathology report available. No staging workup documented.
+
+Impression:
+Insufficient information for staging at this time.

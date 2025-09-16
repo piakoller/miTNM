@@ -1,0 +1,9 @@
+Patient ID: P002
+Age: 59
+Sex: Female
+
+Clinical summary:
+A 3.5 cm left upper lobe lesion with FDG-avid ipsilateral hilar lymph node measuring 1.2 cm. No evidence of distant metastasis. Pathology consistent with squamous cell carcinoma.
+
+Impression:
+Primary tumor ~3.5 cm with ipsilateral nodal involvement; no distant metastases seen.

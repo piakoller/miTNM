@@ -1,0 +1,9 @@
+{
+  "miTNM_signature": {
+    "miT": "miT1",
+    "miN": "miN0",
+    "miM": "miM0"
+  },
+  "confidence": 0.8,
+  "rationale": "The report describes a 3.1 cm lung mass, classified as miT1, and no nodal or distant metastasis, indicating miN0 and miM0 respectively. The absence of FDG-avid nodes further supports this assessment."
+}

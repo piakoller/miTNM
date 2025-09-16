@@ -1,0 +1,3 @@
+Extract the miTNM signature from the provided patient report. Use only evidence present in the text. If the text does not provide enough evidence for a component, set it to "unknown".
+
+Return strictly the JSON schema required by the system instructions (no extra commentary). Keep the rationale short (1-3 sentences).

@@ -69,36 +69,33 @@ python .\generate_miTNM.py `
 
 This writes one JSON per input (e.g., `patient1_T2N0M0.txt` -> `outputs/patient1_T2N0M0.json`) and prints a short summary.
 
-## Create an Excel overview (summary)
+## Create a CSV overview (summary)
 
-You can combine patient reports and their miTNM JSON outputs into a single Excel file for easy review.
+You can combine patient reports and their miTNM JSON outputs into a two-column CSV for easy review.
 
-Install the Excel writer dependency if needed (it's already listed in `requirements.txt`):
-
-```powershell
-pip install -r .\requirements.txt
-```
+CSV columns:
+- Column 1: patient_data (raw text)
+- Column 2: output_json (full JSON string)
 
 Single pair (one patient and one JSON):
 
 ```powershell
-python .\combine_to_excel.py --patient-file .\patient_example.txt --json-file .\output.json --output-excel .\miTNM_summary.xlsx
+python .\combine_to_csv.py --patient-file .\patient_example.txt --json-file .\output.json --output-csv .\miTNM_summary.csv
 ```
 
 Batch mode (match JSON files by filename stem):
 
 ```powershell
-python .\combine_to_excel.py `
+python .\combine_to_csv.py `
   --patient-dir .\patients `
   --pattern *.txt `
   --json-dir .\outputs `
-  --output-excel .\miTNM_summary.xlsx
+  --output-csv .\miTNM_summary.csv
 ```
 
 Notes
-- The sheet includes: patient_file, json_file, miT, miN, miM, confidence, rationale, and a truncated patient_text (default 500 chars).
-- You can include the full patient text by adding `--max-text-chars -1`.
-- If a JSON is missing, the row will show `unknown` fields and a note in the rationale.
+- If a JSON is missing or invalid, the second column contains an error JSON with a brief message.
+- No extra dependencies are required; it uses only Python’s standard library.
 
 ## How this works (for clinicians) 🩺
 

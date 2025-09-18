@@ -1,18 +1,26 @@
 #!/usr/bin/env python3
 """
-Combine patient text files and their generated miTNM JSON outputs into a two-column CSV.
+Combine patient text files and their generated miTNM JSON outputs into a CSV.
 
-CSV format:
-- Column 1: patient_data (raw text)
-- Column 2: output_json (the entire JSON string from the model)
+Default output (clear overview - 5 columns):
+1) patient_id_age_sex   (e.g., "P001 | 67 | Male")
+2) impression           (from the patient text)
+3) clinical_summary     (from the patient text)
+4) miTNM_signature      (formatted: "miT1 | miN0 | miM0")
+5) rationale            (from the JSON)
+
+Optional: --two-columns keeps the original simple layout with just patient_data and output_json.
 
 Usage (Windows PowerShell):
 
-# Single pair
-python .\combine_to_csv.py --patient-file .\patient_example.txt --json-file .\output.json --output-csv .\miTNM_summary.csv
+# Single pair (clear overview)
+py -3 .\combine_to_csv.py --patient-file .\patient_example.txt --json-file .\output.json --output-csv .\miTNM_summary.csv
 
-# Batch by folder (assumes JSON next to each patient .txt or in --json-dir/./outputs)
-python .\combine_to_csv.py --patient-dir .\patients --pattern *.txt --json-dir .\outputs --output-csv .\miTNM_summary.csv
+# Batch by folder (clear overview)
+py -3 .\combine_to_csv.py --patient-dir .\patients --pattern *.txt --json-dir .\outputs --output-csv .\miTNM_summary.csv
+
+# Old format (two columns)
+py -3 .\combine_to_csv.py --patient-dir .\patients --json-dir .\outputs --two-columns --output-csv .\miTNM_summary.csv
 
 No external dependencies required (uses Python stdlib).
 """
@@ -23,7 +31,8 @@ import csv
 import json
 import sys
 from pathlib import Path
-from typing import List, Optional
+import re
+from typing import List, Optional, Tuple
 
 
 def read_text(path: Path) -> str:
@@ -47,6 +56,27 @@ def read_json_str(path: Optional[Path]) -> str:
         return json.dumps({"error": f"JSON parse error: {e}"}, ensure_ascii=False)
 
 
+def parse_json_fields(path: Optional[Path]) -> Tuple[str, str, str, float, str]:
+    """Return normalized fields from miTNM JSON: (miT, miN, miM, confidence, rationale)."""
+    if not path or not path.exists():
+        return ("unknown", "unknown", "unknown", 0.0, "JSON missing")
+    try:
+        obj = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        return ("unknown", "unknown", "unknown", 0.0, f"JSON parse error: {e}")
+    sig = obj.get("miTNM_signature") or {}
+    miT = str(sig.get("miT", "unknown") or "unknown").strip()
+    miN = str(sig.get("miN", "unknown") or "unknown").strip()
+    miM = str(sig.get("miM", "unknown") or "unknown").strip()
+    try:
+        conf = float(obj.get("confidence", 0.0))
+        confidence = max(0.0, min(1.0, conf))
+    except Exception:
+        confidence = 0.0
+    rationale = str(obj.get("rationale", "")).strip()
+    return (miT, miN, miM, confidence, rationale)
+
+
 def write_csv(rows: List[List[str]], out_path: Path) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     # Use newline='' to avoid extra blank lines on Windows
@@ -58,7 +88,7 @@ def write_csv(rows: List[List[str]], out_path: Path) -> None:
 
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Combine patient texts and miTNM JSON outputs into a 2-column CSV")
+    p = argparse.ArgumentParser(description="Combine patient texts and miTNM JSON outputs into a CSV (clear overview by default)")
     # Single pair
     p.add_argument("--patient-file", help="Path to a single patient .txt file")
     p.add_argument("--json-file", help="Path to the matching JSON output file")
@@ -67,6 +97,7 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
     p.add_argument("--pattern", default="*.txt", help="Glob pattern for patient files (default: *.txt)")
     p.add_argument("--json-dir", help="Directory containing JSON outputs (optional)")
     p.add_argument("--output-csv", default="miTNM_summary.csv", help="Path to write the CSV summary")
+    p.add_argument("--two-columns", action="store_true", help="Write the legacy two-column CSV (patient_data, output_json)")
     return p.parse_args(argv)
 
 
@@ -75,10 +106,57 @@ def main(argv: List[str]) -> int:
 
     rows: List[List[str]] = []
 
+    def to_two_col(pf: Path, jf: Optional[Path]) -> List[str]:
+        return [read_text(pf), read_json_str(jf)]
+
+    def parse_patient_overview(text: str) -> Tuple[str, str, str, str, str]:
+        """Extract patient overview fields: id_age_sex, impression, clinical_summary, signature (placeholder), rationale (placeholder)."""
+        pid = age = sex = ""
+        clinical_lines: List[str] = []
+        impression_lines: List[str] = []
+        section = "header"
+        for raw in text.splitlines():
+            line = raw.strip()
+            low = line.lower()
+            if low == "clinical summary:" or low == "clinical summary":
+                section = "clinical"
+                continue
+            if low == "impression:" or low == "impression":
+                section = "impression"
+                continue
+            if section == "header":
+                m = re.match(r"^patient id:\s*(.+)$", line, re.IGNORECASE)
+                if m:
+                    pid = m.group(1).strip()
+                    continue
+                m = re.match(r"^age:\s*(.+)$", line, re.IGNORECASE)
+                if m:
+                    age = m.group(1).strip()
+                    continue
+                m = re.match(r"^sex:\s*(.+)$", line, re.IGNORECASE)
+                if m:
+                    sex = m.group(1).strip()
+                    continue
+            elif section == "clinical":
+                clinical_lines.append(raw)
+            elif section == "impression":
+                impression_lines.append(raw)
+        id_age_sex = " | ".join([x for x in [pid, age, sex] if x])
+        clinical_txt = "\n".join(clinical_lines).strip()
+        impression_txt = "\n".join(impression_lines).strip()
+        return (id_age_sex, impression_txt, clinical_txt, "", "")
+
+    def to_overview_row(pf: Path, jf: Optional[Path]) -> List[str]:
+        text = read_text(pf)
+        id_age_sex, impression, clinical, _, _ = parse_patient_overview(text)
+        miT, miN, miM, _conf, rationale = parse_json_fields(jf)
+        signature_disp = " | ".join([miT, miN, miM])
+        return [id_age_sex, impression, clinical, signature_disp, rationale]
+
     if args.patient_file and args.json_file:
         pf = Path(args.patient_file)
         jf = Path(args.json_file)
-        rows.append([read_text(pf), read_json_str(jf)])
+        rows.append(to_two_col(pf, jf) if args.two_columns else to_overview_row(pf, jf))
     elif args.patient_dir:
         pdir = Path(args.patient_dir)
         if not pdir.is_dir():
@@ -94,7 +172,7 @@ def main(argv: List[str]) -> int:
             if default_outputs.exists():
                 candidates.append(default_outputs / (pf.stem + '.json'))
             jf = next((c for c in candidates if c and c.exists()), None)
-            rows.append([read_text(pf), read_json_str(jf)])
+            rows.append(to_two_col(pf, jf) if args.two_columns else to_overview_row(pf, jf))
         if not rows:
             sys.exit("No patient files found to process.")
     else:
@@ -102,12 +180,26 @@ def main(argv: List[str]) -> int:
         pf = Path("patient_example.txt")
         jf = Path("output.json")
         if pf.exists() and jf.exists():
-            rows.append([read_text(pf), read_json_str(jf)])
+            rows.append(to_two_col(pf, jf) if args.two_columns else to_overview_row(pf, jf))
         else:
             sys.exit("Provide either --patient-file and --json-file, or --patient-dir.")
 
     out_path = Path(args.output_csv)
-    write_csv(rows, out_path)
+    if args.two_columns:
+        write_csv(rows, out_path)
+    else:
+        header = [
+            "patient_id_age_sex",
+            "impression",
+            "clinical_summary",
+            "miTNM_signature",
+            "rationale",
+        ]
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        with out_path.open("w", encoding="utf-8", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(header)
+            writer.writerows(rows)
     print(f"Wrote CSV: {out_path}")
     return 0
 

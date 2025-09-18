@@ -1,41 +1,5 @@
-patient_data,output_json
-"Patient ID: P001
-Age: 67
-Sex: Male
-
-Clinical summary:
-CT shows a 3.1 cm mass in the right upper lobe. No enlarged or FDG-avid mediastinal/hilar lymph nodes. No distant metastases on PET/CT. Biopsy confirms adenocarcinoma.
-
-Impression:
-Primary lung mass ~3.1 cm. No nodal involvement. No distant metastasis detected.
-","{""miTNM_signature"": {""miT"": ""miT1"", ""miN"": ""miN0"", ""miM"": ""miM0""}, ""confidence"": 0.8, ""rationale"": ""The report describes a 3.1 cm lung mass, classified as miT1, and no nodal or distant metastasis, indicating miN0 and miM0 respectively. The absence of FDG-avid nodes further supports this assessment.""}"
-"Patient ID: P002
-Age: 59
-Sex: Female
-
-Clinical summary:
-A 3.5 cm left upper lobe lesion with FDG-avid ipsilateral hilar lymph node measuring 1.2 cm. No evidence of distant metastasis. Pathology consistent with squamous cell carcinoma.
-
-Impression:
-Primary tumor ~3.5 cm with ipsilateral nodal involvement; no distant metastases seen.
-","{""miTNM_signature"": {""miT"": ""miT3"", ""miN"": ""miN1"", ""miM"": ""miM0""}, ""confidence"": 0.8, ""rationale"": ""The report indicates a primary tumor of 3.5 cm and ipsilateral hilar lymph node involvement (1.2 cm), suggesting miT3 and miN1. There is no mention of distant metastasis, therefore miM0 is appropriate.""}"
-"Patient ID: P003
-Age: 72
-Sex: Male
-
-Clinical summary:
-A 6.2 cm right lower lobe mass invading the chest wall. No enlarged mediastinal nodes identified. Multiple hepatic lesions consistent with metastases.
-
-Impression:
-Large primary tumor (>5 cm) with chest wall invasion, no nodal disease, and distant liver metastases.
-","{""miTNM_signature"": {""miT"": ""miT4"", ""miN"": ""miN0"", ""miM"": ""miM1""}, ""confidence"": 0.8, ""rationale"": ""The report describes a large tumor (>5cm) invading the chest wall (miT4), no mediastinal nodes (miN0), and multiple liver metastases (miM1). The presence of a large tumor with invasion is the primary indicator for miT4.""}"
-"Patient ID: P004
-Age: 64
-Sex: Female
-
-Clinical summary:
-Non-specific cough and weight loss. Chest imaging pending. No pathology report available. No staging workup documented.
-
-Impression:
-Insufficient information for staging at this time.
-","{""miTNM_signature"": {""miT"": ""unknown"", ""miN"": ""unknown"", ""miM"": ""unknown""}, ""confidence"": 0.0, ""rationale"": ""The report indicates insufficient information for staging, including imaging and pathology results. Therefore, miT, miN, and miM classifications cannot be determined based on the provided data.""}"
+patient_id_age_sex,impression,clinical_summary,miTNM_signature,rationale
+P001 | 67 | Male,Primary lung mass ~3.1 cm. No nodal involvement. No distant metastasis detected.,CT shows a 3.1 cm mass in the right upper lobe. No enlarged or FDG-avid mediastinal/hilar lymph nodes. No distant metastases on PET/CT. Biopsy confirms adenocarcinoma.,miT1 | miN0 | miM0,"The report describes a 3.1 cm lung mass, classified as miT1, and no nodal or distant metastasis, indicating miN0 and miM0 respectively. The absence of FDG-avid nodes further supports this assessment."
+P002 | 59 | Female,Primary tumor ~3.5 cm with ipsilateral nodal involvement; no distant metastases seen.,A 3.5 cm left upper lobe lesion with FDG-avid ipsilateral hilar lymph node measuring 1.2 cm. No evidence of distant metastasis. Pathology consistent with squamous cell carcinoma.,miT3 | miN1 | miM0,"The report indicates a primary tumor of 3.5 cm and ipsilateral hilar lymph node involvement (1.2 cm), suggesting miT3 and miN1. There is no mention of distant metastasis, therefore miM0 is appropriate."
+P003 | 72 | Male,"Large primary tumor (>5 cm) with chest wall invasion, no nodal disease, and distant liver metastases.",A 6.2 cm right lower lobe mass invading the chest wall. No enlarged mediastinal nodes identified. Multiple hepatic lesions consistent with metastases.,miT4 | miN0 | miM1,"The report describes a large tumor (>5cm) invading the chest wall (miT4), no mediastinal nodes (miN0), and multiple liver metastases (miM1). The presence of a large tumor with invasion is the primary indicator for miT4."
+P004 | 64 | Female,Insufficient information for staging at this time.,Non-specific cough and weight loss. Chest imaging pending. No pathology report available. No staging workup documented.,unknown | unknown | unknown,"The report indicates insufficient information for staging, including imaging and pathology results. Therefore, miT, miN, and miM classifications cannot be determined based on the provided data."

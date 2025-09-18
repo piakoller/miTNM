@@ -5,7 +5,7 @@ Generate a miTNM signature from patient data using a local Ollama model.
 Reads an instruction prompt and a patient text file, calls Ollama's chat API
 with JSON formatting, and prints/saves a structured miTNM signature.
 
-Requires: Ollama running locally (http://localhost:11434) and `requests`.
+Requires: Ollama running locally (http://localhost:11434).
 """
 
 from __future__ import annotations
@@ -140,7 +140,7 @@ def normalize_output(obj: Dict[str, Any]) -> Dict[str, Any]:
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Generate miTNM signature using Ollama")
-    p.add_argument("--model", default="llama3.1", help="Ollama model name (e.g., llama3.1, mistral)")
+    p.add_argument("--model", default="gpt-oss:latest", help="Ollama model name (e.g., gpt-oss:latest)")
     p.add_argument("--prompt-file", default="prompt.txt", help="Path to instruction prompt text file")
     # Single-file mode
     p.add_argument("--patient-file", default=None, help="Path to a single patient data text file")

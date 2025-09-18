@@ -1,19 +1,19 @@
 # miTNM signature generator (Ollama)
 
-This repo contains a tiny Python script that reads an instruction prompt and a patient report, then calls a local Ollama model to generate a structured miTNM signature as JSON.
+This repo contains a tiny Python script that reads an instruction prompt and a patient report, then calls a local Ollama model (default: gpt-oss:latest) to generate a structured miTNM signature as JSON.
 
 ## Requirements
 - Windows, macOS, or Linux
 - Ollama installed and running locally (defaults to http://localhost:11434)
-- A pulled model (e.g., `llama3.1` or `mistral`)
+- A pulled model (default recommended: `gpt-oss:latest`)
 - Python 3.9+ (no external Python packages needed)
 
 ## Quick start (Windows PowerShell)
 
-1. Install and start Ollama, then pull a model (example: llama3.1):
+1. Install and start Ollama, then pull a model (example: gpt-oss:latest):
 
 ```powershell
-ollama run llama3.1 --prompt "Say hi" | Out-Null
+ollama run gpt-oss:latest --prompt "Say hi" | Out-Null
 ```
 
 2. (Optional) Create/activate a virtual environment:
@@ -23,10 +23,10 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-3. Run with the sample files:
+3. Run with the sample files (defaults to gpt-oss:latest):
 
 ```powershell
-python .\generate_miTNM.py --model llama3.1 --prompt-file .\prompt.txt --patient-file .\patient_example.txt
+python .\generate_miTNM.py --model gpt-oss:latest --prompt-file .\prompt.txt --patient-file .\patient_example.txt
 ```
 
 The script prints JSON like:
@@ -60,7 +60,7 @@ Place patient `.txt` files under `./patients` (examples are included). Then run:
 
 ```powershell
 python .\generate_miTNM.py `
-  --model llama3.1 `
+  --model gpt-oss:latest `
   --prompt-file .\prompt.txt `
   --patient-dir .\patients `
   --pattern *.txt `
@@ -68,6 +68,37 @@ python .\generate_miTNM.py `
 ```
 
 This writes one JSON per input (e.g., `patient1_T2N0M0.txt` -> `outputs/patient1_T2N0M0.json`) and prints a short summary.
+
+## Create an Excel overview (summary)
+
+You can combine patient reports and their miTNM JSON outputs into a single Excel file for easy review.
+
+Install the Excel writer dependency if needed (it's already listed in `requirements.txt`):
+
+```powershell
+pip install -r .\requirements.txt
+```
+
+Single pair (one patient and one JSON):
+
+```powershell
+python .\combine_to_excel.py --patient-file .\patient_example.txt --json-file .\output.json --output-excel .\miTNM_summary.xlsx
+```
+
+Batch mode (match JSON files by filename stem):
+
+```powershell
+python .\combine_to_excel.py `
+  --patient-dir .\patients `
+  --pattern *.txt `
+  --json-dir .\outputs `
+  --output-excel .\miTNM_summary.xlsx
+```
+
+Notes
+- The sheet includes: patient_file, json_file, miT, miN, miM, confidence, rationale, and a truncated patient_text (default 500 chars).
+- You can include the full patient text by adding `--max-text-chars -1`.
+- If a JSON is missing, the row will show `unknown` fields and a note in the rationale.
 
 ## How this works (for clinicians) 🩺
 

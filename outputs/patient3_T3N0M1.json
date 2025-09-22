@@ -4,6 +4,6 @@
     "miN": "miN0",
     "miM": "miM1"
   },
-  "confidence": 0.8,
-  "rationale": "The report describes a large tumor (>5cm) invading the chest wall (miT4), no mediastinal nodes (miN0), and multiple liver metastases (miM1). The presence of a large tumor with invasion is the primary indicator for miT4."
+  "confidence": 0.95,
+  "rationale": "Tumor >5 cm with chest wall invasion indicates miT4; no mediastinal nodes present (miN0); hepatic metastases confirm distant spread (miM1)."
 }

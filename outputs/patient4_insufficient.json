@@ -4,6 +4,6 @@
     "miN": "unknown",
     "miM": "unknown"
   },
-  "confidence": 0.0,
-  "rationale": "The report indicates insufficient information for staging, including imaging and pathology results. Therefore, miT, miN, and miM classifications cannot be determined based on the provided data."
+  "confidence": 0.1,
+  "rationale": "No staging or pathology information provided in the report."
 }

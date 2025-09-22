@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 """
-Generate a miTNM signature from patient data using a local Ollama model.
+Generate miTNM signatures from patient data using a local Ollama model.
 
-Reads an instruction prompt and a patient text file, calls Ollama's chat API
-with JSON formatting, and prints/saves a structured miTNM signature.
+This script automatically processes all patient files in the 'patients/' directory
+and saves the results to the 'outputs/' directory. Patient file paths are hardcoded
+in the script - no need to specify them as command-line arguments.
 
-Requires: Ollama running locally (http://localhost:11434) and `requests`.
+Hardcoded paths:
+- Patient files: patients/*.txt
+- Output files: outputs/*.json
+
+Requires: Ollama running locally (http://localhost:11434).
 """
 
 from __future__ import annotations
@@ -41,7 +46,8 @@ def call_ollama_json(
     payload: Dict[str, Any] = {
         "model": model,
         "messages": messages,
-        "format": "json",
+        # Remove format=json constraint as gpt-oss:latest doesn't support it properly
+        # "format": "json",
         "stream": False,
         "options": {
             "temperature": temperature,
@@ -76,18 +82,32 @@ def call_ollama_json(
         )
     except Exception as e:
         sys.exit(f"Error calling Ollama: {e}")
-    # With format=json, `message.content` should be a JSON string
+    # Without format=json, content may contain JSON within text
     try:
         content = data.get("message", {}).get("content", "").strip()
-        parsed = json.loads(content) if content else {}
+        
+        # Try to parse as direct JSON first
+        try:
+            parsed = json.loads(content) if content else {}
+        except json.JSONDecodeError:
+            # If that fails, try to extract JSON from within the text
+            import re
+            json_match = re.search(r'\{.*\}', content, re.DOTALL)
+            if json_match:
+                json_str = json_match.group(0)
+                parsed = json.loads(json_str)
+            else:
+                # Fallback: if no JSON found, return empty dict
+                parsed = {}
+                
     except json.JSONDecodeError as e:
-        # Fallback: if the model didn't obey JSON, try to extract fenced JSON
+        # Final fallback: if all parsing fails
         text = data.get("message", {}).get("content", "")
         hint = text[:400].replace("\n", " ")
-        sys.exit(
-            "Model did not return valid JSON. "
-            f"First 400 chars: {hint}\nDetails: {e}"
-        )
+        print(f"Warning: Model did not return valid JSON. Using fallback values.")
+        print(f"First 400 chars: {hint}")
+        parsed = {}
+        
     return parsed if isinstance(parsed, dict) else {"result": parsed}
 
 
@@ -125,7 +145,7 @@ def normalize_output(obj: Dict[str, Any]) -> Dict[str, Any]:
     miM = str(sig.get("miM", "unknown")).strip() or "unknown"
     conf = obj.get("confidence")
     try:
-        confidence = float(conf)
+        confidence = float(conf) if conf is not None else 0.0
         if not (0.0 <= confidence <= 1.0):
             confidence = max(0.0, min(1.0, confidence))
     except Exception:
@@ -140,25 +160,23 @@ def normalize_output(obj: Dict[str, Any]) -> Dict[str, Any]:
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Generate miTNM signature using Ollama")
-    p.add_argument("--model", default="llama3.1", help="Ollama model name (e.g., llama3.1, mistral)")
+    p.add_argument("--model", default="gpt-oss:latest", help="Ollama model name (e.g., gpt-oss:latest, llama3.1)")
     p.add_argument("--prompt-file", default="prompt.txt", help="Path to instruction prompt text file")
-    # Single-file mode
-    p.add_argument("--patient-file", default=None, help="Path to a single patient data text file")
-    # Batch mode
-    p.add_argument("--patient-dir", help="Directory containing patient text files (batch mode)")
-    p.add_argument("--pattern", default="*.txt", help="Glob pattern for patient files in --patient-dir (default: *.txt)")
     p.add_argument("--endpoint", default="http://localhost:11434", help="Ollama endpoint base URL")
     p.add_argument("--temperature", type=float, default=0.1, help="Sampling temperature")
     p.add_argument("--timeout", type=int, default=120, help="HTTP timeout in seconds")
-    # Outputs
-    p.add_argument("--output", help="(Single-file mode) Path to write JSON output; prints to stdout if omitted")
-    p.add_argument("--output-dir", help="(Batch mode) Directory to write JSON outputs; defaults to alongside each input file")
+    # Note: patient file paths are now hardcoded in the script
     return p.parse_args(argv)
 
 
 def main(argv: List[str]) -> int:
     args = parse_args(argv)
 
+    # Hardcoded paths - modify these as needed
+    PATIENT_DIR = Path("patients")
+    OUTPUT_DIR = Path("outputs")
+    FILE_PATTERN = "*.txt"
+    
     prompt_path = Path(args.prompt_file)
     instruction = read_text_file(prompt_path)
     system_prompt = build_system_prompt()
@@ -178,71 +196,50 @@ def main(argv: List[str]) -> int:
         )
         return normalize_output(raw)
 
-    # Batch mode
-    if args.patient_dir:
-        patient_dir = Path(args.patient_dir)
-        if not patient_dir.is_dir():
-            sys.exit(f"Error: --patient-dir not found or not a directory: {patient_dir}")
+    # Check if patient directory exists
+    if not PATIENT_DIR.is_dir():
+        sys.exit(f"Error: Patient directory not found: {PATIENT_DIR}")
 
-        files = sorted(patient_dir.glob(args.pattern))
-        if not files:
-            sys.exit(f"No files matched pattern '{args.pattern}' in {patient_dir}")
+    # Find all patient files
+    files = sorted(PATIENT_DIR.glob(FILE_PATTERN))
+    if not files:
+        sys.exit(f"No files matched pattern '{FILE_PATTERN}' in {PATIENT_DIR}")
 
-        out_dir = Path(args.output_dir) if args.output_dir else None
-        if out_dir:
-            out_dir.mkdir(parents=True, exist_ok=True)
+    print(f"Found {len(files)} patient files in {PATIENT_DIR}")
+    
+    # Create output directory if it doesn't exist
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-        processed = 0
-        failures: List[str] = []
-        for fp in files:
-            try:
-                patient_text = fp.read_text(encoding="utf-8").strip()
-            except Exception as e:
-                failures.append(f"{fp.name}: read error: {e}")
-                continue
-            try:
-                result = generate_for_text(patient_text)
-                out_json = json.dumps(result, ensure_ascii=False, indent=2)
-                target = (out_dir / (fp.stem + ".json")) if out_dir else fp.with_suffix(".json")
-                target.write_text(out_json + "\n", encoding="utf-8")
-                print(f"Saved: {target}")
-                processed += 1
-            except SystemExit as e:
-                # call_ollama_json may sys.exit on API errors; capture per-file
-                failures.append(f"{fp.name}: {e}")
-            except Exception as e:
-                failures.append(f"{fp.name}: {e}")
+    processed = 0
+    failures: List[str] = []
+    
+    for fp in files:
+        print(f"Processing: {fp.name}")
+        try:
+            patient_text = fp.read_text(encoding="utf-8").strip()
+        except Exception as e:
+            failures.append(f"{fp.name}: read error: {e}")
+            continue
+        try:
+            result = generate_for_text(patient_text)
+            out_json = json.dumps(result, ensure_ascii=False, indent=2)
+            target = OUTPUT_DIR / (fp.stem + ".json")
+            target.write_text(out_json + "\n", encoding="utf-8")
+            print(f"Saved: {target}")
+            processed += 1
+        except SystemExit as e:
+            # call_ollama_json may sys.exit on API errors; capture per-file
+            failures.append(f"{fp.name}: {e}")
+        except Exception as e:
+            failures.append(f"{fp.name}: {e}")
 
-        # Summary
-        print(f"Done. Processed {processed}/{len(files)} files.")
-        if failures:
-            print("Failures:")
-            for f in failures:
-                print(f" - {f}")
-        return 0 if processed > 0 else 1
-
-    # Single-file mode (default)
-    if not args.patient_file:
-        # Provide a default only if neither patient-dir nor patient-file is given
-        default_path = Path("patient_example.txt")
-        if default_path.exists():
-            args.patient_file = str(default_path)
-        else:
-            sys.exit("Provide --patient-file or --patient-dir.")
-
-    patient_path = Path(args.patient_file)
-    patient_text = read_text_file(patient_path)
-
-    result = generate_for_text(patient_text)
-    out_json = json.dumps(result, ensure_ascii=False, indent=2)
-    if args.output:
-        out_path = Path(args.output)
-        out_path.write_text(out_json + "\n", encoding="utf-8")
-        print(f"Saved miTNM signature to {out_path}")
-    else:
-        print(out_json)
-
-    return 0
+    # Summary
+    print(f"\nDone. Processed {processed}/{len(files)} files.")
+    if failures:
+        print("Failures:")
+        for f in failures:
+            print(f" - {f}")
+    return 0 if processed > 0 else 1
 
 
 if __name__ == "__main__":

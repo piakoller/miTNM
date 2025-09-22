@@ -10,7 +10,7 @@ Hardcoded paths:
 - Patient files: patients/*.txt
 - Output files: outputs/*.json
 
-Requires: Ollama running locally (http://localhost:11434).
+Requires: Ollama running locally (http://localhost:11434) and `requests`.
 """
 
 from __future__ import annotations
@@ -160,7 +160,7 @@ def normalize_output(obj: Dict[str, Any]) -> Dict[str, Any]:
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Generate miTNM signature using Ollama")
-    p.add_argument("--model", default="gpt-oss:latest", help="Ollama model name (e.g., gpt-oss:latest, llama3.1)")
+    p.add_argument("--model", default="llama3.1", help="Ollama model name (e.g., llama3.1, mistral)")
     p.add_argument("--prompt-file", default="prompt.txt", help="Path to instruction prompt text file")
     p.add_argument("--endpoint", default="http://localhost:11434", help="Ollama endpoint base URL")
     p.add_argument("--temperature", type=float, default=0.1, help="Sampling temperature")

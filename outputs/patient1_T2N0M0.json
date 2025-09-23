@@ -5,5 +5,6 @@
     "miM": "miM0"
   },
   "confidence": 0.95,
-  "rationale": "CT shows a 3.1 cm mass (T2), no enlarged or FDG‑avid mediastinal/hilar nodes (N0), and PET/CT shows no distant metastases (M0)."
+  "rationale": "CT shows a 3.1 cm mass (T2), no enlarged or FDG‑avid mediastinal/hilar nodes (N0), and PET/CT shows no distant metastases (M0).",
+  "model_used": "gpt-oss:latest"
 }

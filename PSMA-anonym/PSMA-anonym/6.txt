@@ -1,0 +1,28 @@
+RESULTAT     
+Klinische Angaben und Fragestellung:
+Casodex 50mg 1-0-0 von 2/2024 - 12/2024
+ADT (Name unbekannt) seit 12/2024
+Gleason-Score: 3 +3 = 6
+PSA: 03/2023 18.5, 11/2024 47
+
+PET-CT vom 22.01.2025 
+Gerät:	Siemens Biograph Vision Quadra
+Technik:	PET Körperstamm incl. low-dose-CT 142 min nach Applikation über einen i.v. Zugang cubital rechts.    
+Prämedikation: 	keine
+Radiodiagnostikum:	140 MBq [18F]PSMA-1007
+Befund: Keine Voruntersuchung zum Vergleich vorliegend.
+
+Lokal: Parenchym der Prostata paramedian bds. intensiv PSMA-avide.
+
+Lokoregionäre Lymphknoten: Intensiv PSMA-avider Lymphknoten obturatorisch rechts (4 mm) und links (2 mm). Moderat PSMA-avider Lymphknoten (8 mm) distal iliakal extern rechts am Leistenband. Intensiv PSMA-avider Lymphknoten inguinal links (5 mm). Inguinal bds. mehrere akzentuierte moderat PSMA-avide Lymphknoten, diese möglicherweise reaktiv. Präsakral links intensiv PSMA-avider Lymphknoten (5 mm), kein symmetrisches Gegenstück als möglicher Hinweis auf Ganglion.
+
+Retroperitoneale und sonstige Lymphknoten: Kein Nachweis suspekt PSMA-avider oder pathologisch vergrösserter Lymphknoten. Physiologisch PSMA-avide paravertebrale symmetrische Ganglien.
+
+Skelett: Status nach einbringen Hüftprothese links, Trochanter major flau mehrsklerosiert und intensiv PSMA-avide. Ramus inferior Os pubis links mit kleiner sehr flauer intensiv PSMA-avider Mehrsklerosierung. Corpus vertebrae BWK 2 rechtsseitig mit moderater PSMA-Avidität, allenfalls flaue Osteolyse. Moderate PSMA-Avidität Costa II links lateral, sowie exemplarisch Costa IV rechts lateral, kein klares CT Korrelat, möglicherweise unspezifisch DD Status nach alter undislozierter Fraktur. 
+
+Thorakale und abdominelle Organe: Kein Nachweis malignomverdächtiger intrapulmonaler Rundherde oder von Infiltraten. Kein Pleura- oder Perikarderguss. Gynäkomastie bds. Up-Side-Down-Magen. Reizlose Cholecystolithiasis. Physiologische hepatobiliäre Tracerexkretion. Keine freie abdominelle Luft oder Flüssigkeit. Infrarenales Aneurysma der Aorta abdominalis von 30 mm (MPR korrigiert). Leistenhernie links.
+
+Beurteilung:
+- Intensiv PSMA-avides Prostatakarzinom paramedian bds.
+- V.a. Lymphknotenmetastasen lokoregionär bds. im kleinen Becken, sowie inguinal links und präsakral links.
+- Metastasensuspekte ossäre Läsionen im Trochanter major links, Ramus inferior Os pubis links, und fraglich II Costa links und IV Costa rechts. Die übrigen PSMA-Aviditäten ossär sind noch vereinbar mit unspezifischem Uptake. 

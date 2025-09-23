@@ -1,0 +1,27 @@
+RESULTAT     
+Klinische Angaben und Fragestellung:
+cT2 cN0 cM0 PC, Gleason 7b, St. n. SBRT PC, aktuell PSA Anstieg auf 1.3
+Metastasen?
+
+PET-CT vom 22.01.2025 
+Gerät:	Siemens Biograph Vision Quadra
+Technik:	PET Körperstamm incl. low-dose-CT 114 min nach Applikation über einen i.v. Zugang cubital links.    
+Prämedikation: 	keine
+Radiodiagnostikum:	149 MBq [18F]PSMA-1007
+Befund: MR Becken vom 07.08.2018  zum Vergleich vorliegend.
+
+Lokal: Status nach einbringen von Markern, lateral rechts in der Prostata gelegene intensive PSMA-Avidität kapselständig (4 mm). Zusätzlich links posterior schwächere PSMA-Avidität.
+
+Lokoregionäre Lymphknoten: Kein Nachweis suspekt PSMA-avider oder pathologisch vergrösserter Lymphknoten.
+
+Retroperitoneale und sonstige Lymphknoten: Kein Nachweis suspekt PSMA-avider oder pathologisch vergrösserter Lymphknoten. Physiologisch PSMA-avide paravertebrale symmetrische Ganglien.
+
+Skelett: Kein Nachweis malignomtypischer ossärer Läsionen. Vereinzelte diffuse PSMA-Aviditäten ohne klares CT Korrelat, exemplarisch gesamter Beckenknochen, in erster Linie unspezifisch tracerbedingt.
+
+Thorakale und abdominelle Organe: Kein Nachweis malignomverdächtiger intrapulmonaler Rundherde oder von Infiltraten. Kein Pleura- oder Perikarderguss.
+Intensive PSMA-avide Läsion des Leberparenchyms subkapsulär am Unterrand des Segments IVb. Ansonsten physiologische hepatobiliäre Tracerexkretion. Ausgeprägte parapelvine Nierenzysten bds. Sigmadivertikulose. Keine freie abdominelle Luft oder Flüssigkeit.
+ 
+Beurteilung:
+•	V.a. PSMA-avides Karzinom paramedian rechts in der Prostata. Zusätzlich links posterior schwächere PSMA-Avidität, DD weiterer Fokus, DD entzündlich bedingt.
+•	Intensiv PSMA-avide Läsion subkapsulär der Unterkante des Lebersegmentes IVb a.e. Gallenrückstau bei hepatobiliärer Exkretion.
+•	Keine weiteren Tumormanifestationen mit gesteigerter PSMA-Expression.

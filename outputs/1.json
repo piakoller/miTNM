@@ -1,0 +1,10 @@
+{
+  "miTNM_signature": {
+    "miT": "unknown",
+    "miN": "miN0",
+    "miM": "miM0"
+  },
+  "confidence": 0.85,
+  "rationale": "Report states N0 and M0; no tumor size or extent provided, so T is unknown.",
+  "model_used": "gpt-oss:latest"
+}

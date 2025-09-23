@@ -1,0 +1,26 @@
+Klinische Angaben und Fragestellung:
+Neudiagnose Prostatakarzinom GSC 7a
+Staging?
+
+PET-CT vom 08.09.2025 
+Gerät:	Siemens Biograph Vision Quadra
+Technik:	PET Körperstamm incl. low-dose-CT 130 min nach Applikation über einen i.v. Zugang cubital rechts.    
+Prämedikation: 	keine
+Radiodiagnostikum:	151 MBq [18F]PSMA-1007
+Befund: MR Prostata vom 05.08.2025  zum Vergleich vorliegend.
+
+Lokal: Fokale intensive PSMA-Avidität paramedian links in der Prostata, mit moderat PSMA-aviden Ausläufern nach kontralateral rechts.
+
+Lokoregionäre Lymphknoten: Distal iliakal extern bds. mehrere moderat PSMA-avide akzentuierte Lymphknoten, links bis zu 9 mm Kurzachse, rechts bis zu 9 mm Kurzachse. Physiologisch PSMA-avide präsakrale symmetrische Ganglien.
+
+Retroperitoneale und sonstige Lymphknoten: am ehesten Ganglion paravertebral lateral rechts des Corpus LWK 5 , ca. 4 mm, moderat PSMA-avide, asymmetrisch zur Gegenseite. Kein Nachweis suspekt PSMA-avider oder pathologisch vergrösserter Lymphknoten. Physiologisch PSMA-avide paravertebrale symmetrische Ganglien.
+
+Skelett: Costa VI dorsolateral links mit flauer Randsklerosierung, 8 mm, mittelkräftig PSMA-avide. Costa VI und VII angrenzend mit alten konsolidierten Knickfrakturen. Ansonsten kein Nachweis malignomtypischer ossärer Läsionen. 
+
+Thorakale und abdominelle Organe: Kein Nachweis malignomverdächtiger intrapulmonaler Rundherde oder von Infiltraten. Kein Pleura- oder Perikarderguss. Grobmorphologisch unauffällige Darstellung der parenchymatösen Oberbauchorgane. Physiologische hepatobiliäre Tracerexkretion. Keine freie abdominelle Luft oder Flüssigkeit.
+ 
+Beurteilung:
+- Intensiv PSMA-avides Prostatakarzinom paramedian links mit Ausläufern nach kontralateral rechts.
+- Am ehesten benigner Befund in der Costa VI links dorsolateral.
+- Am ehesten N0, M0.
+

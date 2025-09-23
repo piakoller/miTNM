@@ -1,0 +1,26 @@
+RESULTAT     
+Klinische Angaben und Fragestellung:
+Prostatakarzinom Gleason 4+3=7 bds, PSA 13.2
+Staging?
+
+PET-CT vom 08.09.2025 
+Gerät:	Siemens Biograph Vision Quadra
+Technik:	PET Körperstamm incl. low-dose-CT 122 min nach Applikation über einen i.v. Zugang cubital rechts.    
+Prämedikation: 	keine
+Radiodiagnostikum:	183 MBq [18F]PSMA-1007
+Befund: MR Prostata vom 21.07.2025  zum Vergleich vorliegend.
+
+Lokal: Dorsal in der Prostata bds. mit fraglichem Kontakt zum Samenbläschen bds. und zur ventralen Rektumwand intensiv PSMA-avide Läsionen, korrelierend zu den T2 hypointensen Läsionen der MRI vom 21.07.2025. Zusätzlich Parenchym der Prostata paramedian rechtsbetont intensiv PSMA-avide.
+
+Lokoregionäre Lymphknoten: Kein Nachweis suspekt PSMA-avider oder pathologisch vergrösserter Lymphknoten. Physiologisch PSMA-avide präsakrale symmetrische Ganglien.
+
+Retroperitoneale und sonstige Lymphknoten: Kein Nachweis suspekt PSMA-avider oder pathologisch vergrösserter Lymphknoten.
+
+Skelett: Kein Nachweis malignomtypischer ossärer Läsionen. Vereinzelte fokale PSMA-Aviditäten ohne klares CT Korrelat, exemplarisch Vorderkante LWK 2 links lateral, in erster Linie unspezifisch tracerbedingt.
+
+Thorakale und abdominelle Organe: Kein Nachweis malignomverdächtiger intrapulmonaler Rundherde oder von Infiltraten. Kein Pleura- oder Perikarderguss. Grobmorphologisch unauffällige Darstellung der parenchymatösen Oberbauchorgane. Physiologische hepatobiliäre Tracerexkretion. Keine freie abdominelle Luft oder Flüssigkeit.
+ 
+Beurteilung:
+- Intensiv PSMA-avides Prostatakarzinom mit fraglicher Kapselüberschreitung nach dorsal, paramedian bds., fraglicher Kontakt zur anterioren Rektumwand und zum Samenbläschen bds.
+- Kein weiterer Hinweis auf PSMA-avide Tumormanifestationen.
+

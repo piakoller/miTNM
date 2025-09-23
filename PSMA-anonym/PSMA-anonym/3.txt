@@ -1,0 +1,37 @@
+RESULTAT     
+Klinische Angaben und Fragestellung:
+Prostatakarzinom-Manifestation in der Harnblase – initial histologisch als Urothelkarzinom gewertet
+Primär ossär und lymphogen metastasierendes Prostatakarzinom, ED 08/2019
+- 22.01.2024 NGS: TMPRSS2-ERG Fusionstranskript, typisch für Prostatakarzinom; identische TP53 Mu-
+tation wie im NGS des Prostatakarzinoms (B2023.20212), keine FGFR1-3
+- 27.03.2024 – 16.04.2024 Palliative Radiotherapie der Harnblase mit 13 x 3 Gy = 39 GyMutation
+- 22.05.2023 Tumorstenting Ureter links, Normalisierung des Kreatinins
+
+Metastasiertes Prostatakarzinom: Neu Schmerzen über Spina iliakal superior posterior bds. (rechts mehr als links). Vergleich zum Vor-CT, speziell betreffend Lymphknotenmetastasen links paraaortal. Restaging erbeten.
+
+PET-CT vom 20.01.2025 
+Gerät:	Siemens Biograph Vision Quadra
+Technik:	PET Körperstamm mit Neurokranium incl. low-dose-CT 136 min und 196 nach Applikation über einen i.v. Zugang cubital rechts.    Keine i.v.-KM-Gabe bei anamnestisch KM-Allergie.
+Prämedikation: 	keine
+Radiodiagnostikum:	219 MBq [18F]PSMA-1007
+Befund: 
+Zuletzt vorliegend externe CT Thorax/Abdomen nativ vom 02.09.2024 (aktenanamnestisch V.a. Kontrastmittelunverträglichkeit).
+
+Lokal: Multilokuläre, intensive PSMA-Anreicherung im Bereich der Prostataloge mit Punktum maximum apikolateral rechts und zentro-apikal paramedian links. Stationärer Durchmesser der Prostata in axial (37 mm).
+
+Lokoregionäre Lymphknoten: Grössenstationärer intensiv PSMA-avider Lymphknoten (4 mm) rechts im pararektalen Fettgewebe. Grössenstationäre intensiv PSMA-avide Lymphknotenkonglomerate iliakal extern bds. (bis zu rechts 24 mm, links 22 mm). Grössenprogredientes unscharf berandetes, intensiv PSMA-avides Weichteilplus präsakral (49 x 32 mm, VU nur sehr flau und klein angedeutet).
+
+Retroperitoneale und sonstige Lymphknoten: Grössenprogrediente intensiv PSMA-avide Lymphknotenkonglomerate retroperitoneal. Mediastinal multiple intensiv PSMA-avide Lymphknoten, deutlich grössenprogredient (exemplarisch in Station 4R 20 mm, VU 4 mm). Grössenprogrediente intensiv PSMA-avide Lymphknoten bihilär.
+
+Skelett: Diffuse Mehrsklerosierung (Dichte 480 HU) des Os Sakrums, angrenzend intensive PSMA-Avidität. Multifokale intensiv PSMA-avide Läsionen. Zusätzlich ossär ubiquitäre intensive PSMA-Avidität mit, grossteils ohne klares CT Korrelat.
+
+Thorakale und abdominelle Organe: Neuer intensiv PSMA-avider Nodulus (8 x 5 mm) im Oberlappen Segment I rechts. Bipulmonal weitere moderate PSMA-Aviditäten ohne klares CT Korrelat. Port-a-Kath von rechts in die VCS. 
+Regelrechte hepatobiliäre Exkretion. Pars intermedia der rechten Niere nach medial mit rundlicher weichteildichter Läsion (19 mm, 30 HU Dichte), ohne PSMA-Avidität. Doppel-J links in situ. Moderate PSMA-Speicherung der linken Nebenniere.
+
+Beurteilung: 
+•	V.a. multilokuläres PSMA-avides Prostatakarzinom.
+•	Im Vergleich zur Voruntersuchung multiple grössenprogrediente Lymphknotenmetastasen infra- und supradiaphragmal. 
+•	V.a. multifokale ossäre Metastasierung sowie diffuse Knochenmarksinfiltration.
+•	Verdacht auf PSMA-avide bipulmonale Metastasierung. 
+•	Moderate PSMA-Speicherung der linken Nebenniere, DD Nebennierenmetastase.
+•	Nebenbefundlich: Nicht PSMA-avide Läsion der rechten Niere in der Pars intermedia dorsal, falls nicht bekannt sonographische Korrelation empfohlen.

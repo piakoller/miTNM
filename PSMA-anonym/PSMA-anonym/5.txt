@@ -1,0 +1,31 @@
+RESULTAT     
+Klinische Angaben und Fragestellung:
+Lymphogenes Rezidiv eines Adenokarzinoms der Prostata, initial pT3a pN0 (0/32) cM0 Pn1, R1, Gleason Score 4 + 3 = 7b, ED: 07/2016
+- Tumormarker: PSA: 15,2 µg/l (präop), 0,05 µg/l (08/2016), 0,1 µg/l (05/2018), 0,3 µg/l (11/2020), 0,4 µg/l (04/2021), 0,86 µg/l (05/2022), 0,036 µg/l (01/2023), 0,037 µg/l (07/2023), 0,3 µg/l (01/2024), 6,35 (12/2024)
+- 11.07.2016 Radikale Prostatovesikulektomie, pelvine Lymphadenektomie (Interlaken)
+- Histologie (Unilabs H2016.17040 -17046): Adenokarzinom der Prostata
+- 06.10. – 17.10.2022 Stereotaktische Radiotherapie eines Lymphknotenrezidivs, 5 x 7 Gy = 35 Gy 
+Restaging erbeten.
+
+PET-CT vom 22.01.2025 
+Gerät:	Siemens Biograph Vision Quadra
+Technik:	PET Körperstamm incl. low-dose-CT 130 min nach Applikation über einen i.v. Zugang cubital rechts.    
+Prämedikation: 	keine
+Radiodiagnostikum:	126 MBq [18F]PSMA-1007
+Befund: [18F]PSMA-1007-PET-CT vom 18.03.2024  zum Vergleich vorliegend.
+
+Lokal: Status nach Prostatovesikulektomie, in der Samenblasenloge dorsal links intensiv PSMA-avide weichteildichte Läsion von 33 x 22 mm, angrenzend an das Clipmaterial. Zusätzlich PSMA-Fokus kaudal-ventral davon, a.e. ebenfalls in der linken Samenblasenloge, DD Lymphknoten.
+
+Lokoregionäre Lymphknoten: Darstellung mehrerer PSMA-avider Lymphknoten pelvin, exemplarisch: PSMA-avider Lymphknoten neu obturatorisch links (3 mm) sowie PSMA-avider Lymphknoten (2 mm) neu präsakral links. Stationär moderat PSMA-avide Lymphknoten distal iliakal extern bds. am Leistenband, sowie inguinal bds., diese in erster Linie reaktiv. Zusätzlich physiologisch PSMA-avide präsakrale symmetrische Ganglien.
+
+Retroperitoneale und sonstige Lymphknoten: Kein Nachweis suspekt PSMA-avider oder pathologisch vergrösserter Lymphknoten. Akzentuierte Lymphknoten mediastinal, bihilär und axillär bds., diese in erster Linie reaktiv. Physiologisch PSMA-avide paravertebrale symmetrische Ganglien.
+
+Skelett: Costa II links ventral und Os sacrum Massa lateralis links mit stationärer fokaler PSMA-Avidität ohne CT Korrelat.
+
+Thorakale und abdominelle Organe: Neuer moderat bis intensiv PSMA-avider Nodulus (17 x 14 mm) tief in der Lingula links dorsomedial angrenzend an die ventrale Costa VI links. Neuer moderat PSMA-avider Nodulus (11 x 11 mm) im Oberlappen Segment III links. Kein Pleura- oder Perikarderguss. Rundliche nicht PSMA-avide Läsion (9 mm, Dichte 10 HU) der Nebenniere links, in erster Linie lipidreiches Nebennierenadenom. Ansonsten grobmorphologisch unauffällige Darstellung der parenchymatösen Oberbauchorgane. Physiologische hepatobiliäre Tracerexkretion. Keine freie abdominelle Luft oder Flüssigkeit.
+ 
+Beurteilung:
+•	V.a. intensiv PSMA-avides a.e. bifokales Lokalrezidiv in der Samenblasenloge links.
+•	Mehrere metastasensuspekte pelvine Lymphknoten wie beschrieben.
+•	Neue PSMA-avide Konsolidierungen im Oberlappen/Lingula links, DD Metastasen, DD postentzündlich (Klinik?).
+•	Stationär intensive PSMA-Avidität der Costa II links ventral und des Os Sakrums links, DD Metastase DD unspezifisch.

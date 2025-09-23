@@ -1,0 +1,10 @@
+{
+  "miTNM_signature": {
+    "miT": "miT3",
+    "miN": "miN0",
+    "miM": "miM0"
+  },
+  "confidence": 0.9,
+  "rationale": "PET‑CT shows extracapsular extension and contact with seminal vesicles/rectum (miT3); no suspicious lymph nodes (miN0); no bone or visceral metastases (miM0).",
+  "model_used": "gpt-oss:latest"
+}

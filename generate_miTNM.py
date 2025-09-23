@@ -26,12 +26,21 @@ import urllib.error
 
 
 def read_text_file(path: Path) -> str:
-    try:
-        return path.read_text(encoding="utf-8").strip()
-    except FileNotFoundError:
-        sys.exit(f"Error: file not found: {path}")
-    except Exception as e:
-        sys.exit(f"Error reading {path}: {e}")
+    # Try different encodings to handle various file formats
+    encodings = ['utf-8', 'windows-1252', 'iso-8859-1', 'cp1252']
+    
+    for encoding in encodings:
+        try:
+            return path.read_text(encoding=encoding).strip()
+        except UnicodeDecodeError:
+            continue
+        except FileNotFoundError:
+            sys.exit(f"Error: file not found: {path}")
+        except Exception as e:
+            sys.exit(f"Error reading {path}: {e}")
+    
+    # If all encodings fail
+    sys.exit(f"Error: Could not decode {path} with any supported encoding: {encodings}")
 
 
 def call_ollama_json(
@@ -137,7 +146,7 @@ def compose_user_message(instruction: str, patient_text: str) -> str:
     )
 
 
-def normalize_output(obj: Dict[str, Any]) -> Dict[str, Any]:
+def normalize_output(obj: Dict[str, Any], model_name: str) -> Dict[str, Any]:
     # Ensure required keys exist
     sig = obj.get("miTNM_signature") or {}
     miT = str(sig.get("miT", "unknown")).strip() or "unknown"
@@ -155,12 +164,13 @@ def normalize_output(obj: Dict[str, Any]) -> Dict[str, Any]:
         "miTNM_signature": {"miT": miT, "miN": miN, "miM": miM},
         "confidence": confidence,
         "rationale": rationale,
+        "model_used": model_name,
     }
 
 
 def parse_args(argv: List[str]) -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Generate miTNM signature using Ollama")
-    p.add_argument("--model", default="llama3.1", help="Ollama model name (e.g., llama3.1, mistral)")
+    p.add_argument("--model", default="gpt-oss:latest", help="Ollama model name (e.g., gpt-oss:latest, llama3.1)")
     p.add_argument("--prompt-file", default="prompt.txt", help="Path to instruction prompt text file")
     p.add_argument("--endpoint", default="http://localhost:11434", help="Ollama endpoint base URL")
     p.add_argument("--temperature", type=float, default=0.1, help="Sampling temperature")
@@ -173,7 +183,7 @@ def main(argv: List[str]) -> int:
     args = parse_args(argv)
 
     # Hardcoded paths - modify these as needed
-    PATIENT_DIR = Path("patients")
+    PATIENT_DIR = Path("PSMA-anonym/PSMA-anonym")
     OUTPUT_DIR = Path("outputs")
     FILE_PATTERN = "*.txt"
     
@@ -194,7 +204,7 @@ def main(argv: List[str]) -> int:
             temperature=args.temperature,
             timeout=args.timeout,
         )
-        return normalize_output(raw)
+        return normalize_output(raw, args.model)
 
     # Check if patient directory exists
     if not PATIENT_DIR.is_dir():
@@ -216,7 +226,7 @@ def main(argv: List[str]) -> int:
     for fp in files:
         print(f"Processing: {fp.name}")
         try:
-            patient_text = fp.read_text(encoding="utf-8").strip()
+            patient_text = read_text_file(fp)
         except Exception as e:
             failures.append(f"{fp.name}: read error: {e}")
             continue
